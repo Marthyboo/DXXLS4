@@ -1,0 +1,8 @@
+game.Players.PlayerAdded:connect(function(plr)
+ plr.CharacterAdded:connect(function(chr)
+  repeat wait() until chr.Humanoid
+  chr.Humanoid.Died:connect(function()
+   plr.LoadCharacter()
+  end)
+ end)
+end)﻿
