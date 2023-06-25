@@ -1,0 +1,27 @@
+  gg.clearResults()
+    gg.setRanges(gg.REGION_ANONYMOUS)
+    gg.toast('Activating RPG Spam - follow instructions')
+    gg.searchNumber('1;1000F', gg.TYPE_DWORD)
+    gg.getResults(5000)
+    local Results = gg.getResultsCount()
+    gg.sleep(1000)
+    repeat
+      gg.toast('Fire RPG')
+      gg.sleep(2000)
+      gg.refineNumber('0', gg.TYPE_DWORD)
+      gg.getResults(200000)
+      gg.sleep(5000)
+      gg.refineNumber('1', gg.TYPE_DWORD)
+      gg.getResults(200000)
+      Results = gg.getResultsCount()
+    until Results == 1 or Results == 0
+
+    if Results == 0 then
+      gg.toast('RPG Spam failed; try again')
+    else
+      local x = gg.getResults(1)
+      x[1].value = '1'
+      x[1].freeze = true
+      gg.addListItems(x)
+      gg.toast('RPG Spam activated')
+    end
